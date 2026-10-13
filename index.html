@@ -308,7 +308,7 @@
     </div>
   </section>
 
-  <!-- 5. ТАРИФЫ (ОБНОВЛЕННЫЕ ЦЕНЫ: 200 000 ₸ И 500 000 ₸) -->
+  <!-- 5. ТАРИФЫ (АКТУАЛЬНЫЕ ЦЕНЫ: 200 000 ₸ И 500 000 ₸) -->
   <section id="tariffs" class="py-20 px-4">
     <div class="max-w-6xl mx-auto">
       <div class="text-center max-w-3xl mx-auto mb-16">
@@ -366,7 +366,7 @@
           </button>
         </div>
 
-        <!-- ТАРИФ 3: КОРПОРАТИВНЫЙ (500 000 ₸) -->
+        <!-- ТАРИФ 3: КОРПОРАТИВНЫЙ (ОТ 500 000 ₸) -->
         <div class="p-8 rounded-3xl bg-k2-card border border-white/10 flex flex-col justify-between hover:border-white/20 transition">
           <div>
             <span class="text-xs font-mono text-slate-400 uppercase tracking-widest">Для бизнеса и команд</span>
@@ -390,8 +390,8 @@
     </div>
   </section>
 
-  <!-- ПОДВАЛ С УВЕЛИЧЕННЫМ ОТСТУПОМ (ЗАЩИТА ОТ КНОПКИ НАВЕРХ) -->
-  <footer class="border-t border-white/10 bg-black pt-12 pb-24 px-4 text-xs text-slate-500">
+  <!-- ПОДВАЛ С ГАРАНТИРОВАННО СВОБОДНЫМ ПРОСТРАНСТВОМ ДЛЯ ПЛАШКИ -->
+  <footer id="footer-section" class="border-t border-white/10 bg-black pt-12 pb-28 sm:pb-36 px-4 text-xs text-slate-500">
     <div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-6 text-center md:text-left">
       
       <!-- Инфо о курсе -->
@@ -408,8 +408,8 @@
         © 2026 K2 SKILLS. Все права защищены.
       </div>
 
-      <!-- ЭТАЛОННЫЙ БРЕНДИНГ РАЗРАБОТЧИКА -->
-      <div class="flex items-center gap-3.5 px-4 py-2.5 rounded-2xl bg-white/[0.03] border border-white/10 hover:border-k2-lime/40 transition group">
+      <!-- ЭТАЛОННЫЙ БРЕНДИНГ РАЗРАБОТЧИКА (С ДОПОЛНИТЕЛЬНЫМ БУФЕРОМ) -->
+      <div class="relative z-10 flex items-center gap-3.5 px-4 py-2.5 rounded-2xl bg-white/[0.03] border border-white/10 hover:border-k2-lime/40 transition group">
         <div class="w-2 h-2 rounded-full bg-k2-lime animate-pulse"></div>
         <div class="text-left leading-snug">
           <div class="text-slate-400 text-[11px] font-medium tracking-wide">
@@ -424,24 +424,39 @@
     </div>
   </footer>
 
-  <!-- ПРИПОДНЯТАЯ КНОПКА «ПОДНЯТЬСЯ ВВЕРХ» (НИКОГДА НЕ ПЕРЕКРЫВАЕТ РАЗРАБОТЧИКА) -->
-  <button id="back-to-top" aria-label="Подняться вверх" class="fixed bottom-28 sm:bottom-32 right-5 sm:right-6 z-50 p-3 sm:p-3.5 rounded-full bg-k2-card/90 text-k2-lime border border-k2-lime/40 shadow-2xl shadow-black hover:bg-k2-lime hover:text-black transition-all duration-300 transform opacity-0 translate-y-10 pointer-events-none group hover:scale-110">
+  <!-- СУПЕР-ПРИПОДНЯТАЯ КНОПКА «НАВЕРХ» (ВЫСОТА ОТ НИЗА 140px-170px + АВТО-ОТСТУП) -->
+  <button id="back-to-top" aria-label="Подняться вверх" class="fixed bottom-36 sm:bottom-44 right-5 sm:right-6 z-50 p-3 sm:p-3.5 rounded-full bg-k2-card/95 text-k2-lime border border-k2-lime/50 shadow-2xl shadow-black hover:bg-k2-lime hover:text-black transition-all duration-300 transform opacity-0 translate-y-10 pointer-events-none group hover:scale-110">
     <i data-lucide="chevron-up" class="w-5 h-5 sm:w-6 sm:h-6 stroke-[2.5]"></i>
   </button>
 
-  <!-- СКРИПТЫ: ГРАФИК, КАЛЬКУЛЯТОР, КНОПКА НАВЕРХ -->
+  <!-- СКРИПТЫ: ГРАФИК, КАЛЬКУЛЯТОР, УМНЫЙ СКРОЛЛ -->
   <script>
     lucide.createIcons();
 
-    // 1. Кнопка «Наверх»
+    // 1. Умная кнопка «Наверх»: поднимается еще выше при приближении к футеру
     const backToTopBtn = document.getElementById('back-to-top');
+    const footerSection = document.getElementById('footer-section');
+
     window.addEventListener('scroll', () => {
+      // Показываем кнопку после 300px скролла
       if (window.scrollY > 300) {
         backToTopBtn.classList.remove('opacity-0', 'translate-y-10', 'pointer-events-none');
         backToTopBtn.classList.add('opacity-100', 'translate-y-0', 'pointer-events-auto');
       } else {
         backToTopBtn.classList.add('opacity-0', 'translate-y-10', 'pointer-events-none');
         backToTopBtn.classList.remove('opacity-100', 'translate-y-0', 'pointer-events-auto');
+      }
+
+      // Динамический подъем кнопки, если доскроллили в самый низ к футеру
+      if (footerSection) {
+        const footerRect = footerSection.getBoundingClientRect();
+        const windowHeight = window.innerHeight;
+        if (footerRect.top < windowHeight) {
+          // Если футер вошел в видимость, кнопка отлетает вверх
+          backToTopBtn.style.bottom = `${(windowHeight - footerRect.top) + 20}px`;
+        } else {
+          backToTopBtn.style.bottom = '';
+        }
       }
     });
 
