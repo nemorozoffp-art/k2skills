@@ -81,11 +81,11 @@
   </div>
 
   <!-- ШАПКА -->
-  <header class="sticky top-0 z-50 bg-k2-dark/90 backdrop-blur-xl border-b border-white/10">
+  <header class="sticky top-0 z-40 bg-k2-dark/90 backdrop-blur-xl border-b border-white/10">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 py-3.5 flex items-center justify-between">
       <!-- Логотип K2 SKILLS -->
       <a href="#" class="flex items-center gap-3 group">
-        <img src="Logo.png" alt="K2 SKILLS" class="w-10 h-10 object-contain rounded-xl drop-shadow-[0_0_10px_rgba(132,204,22,0.4)] group-hover:scale-105 transition-transform">
+        <img src="Logo.png" alt="K2 SKILLS" class="w-10 h-10 object-contain rounded-xl drop-shadow-[0_0_10px_rgba(132,204,22,0.4)] group-hover:scale-105 transition-transform" onerror="this.style.display='none'">
         <div>
           <span class="block font-title text-xl font-extrabold tracking-wider text-white">K2 <span class="text-k2-lime">SKILLS</span></span>
           <span class="block text-[9px] uppercase tracking-widest text-slate-400 font-medium font-mono">EXCEL GURU ACADEMY</span>
@@ -96,7 +96,6 @@
       <nav class="hidden md:flex items-center gap-8 text-sm font-medium text-slate-300">
         <a href="#comparison" class="hover:text-k2-lime transition">До и После</a>
         <a href="#career" class="hover:text-k2-lime transition">Рост дохода</a>
-        <a href="#program" class="hover:text-k2-lime transition">Программа</a>
         <a href="#calculator" class="hover:text-k2-lime transition">Калькулятор</a>
         <a href="#tariffs" class="hover:text-k2-lime transition">Тарифы</a>
       </nav>
@@ -110,19 +109,16 @@
     </div>
   </header>
 
-  <!-- 1. HERO SECTION (ГЛАВНЫЙ ЭКРАН С ЖИВЫМИ ЦИФРАМИ) -->
+  <!-- 1. HERO SECTION -->
   <section class="relative min-h-[85vh] flex items-center justify-center px-4 py-20 overflow-hidden">
-    <!-- Световые круги в стиле Cyber/Lime -->
     <div class="absolute top-1/4 left-1/2 -translate-x-1/2 w-[600px] h-[350px] bg-k2-lime/15 rounded-full blur-[130px] pointer-events-none"></div>
 
     <div class="relative z-10 max-w-5xl mx-auto text-center">
-      <!-- Бейдж -->
       <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-k2-lime/30 bg-k2-lime/10 text-k2-lime text-xs font-semibold mb-8">
         <i data-lucide="zap" class="w-4 h-4 fill-current"></i>
         <span>Курс-акселератор: от первых формул до интерактивных BI-дашбордов</span>
       </div>
 
-      <!-- Главный оффер -->
       <h1 class="text-4xl sm:text-6xl md:text-7xl font-extrabold tracking-tight leading-[1.1] mb-6 font-title">
         <span class="block text-white">Перестань бояться таблиц.</span>
         <span class="k2-lime-gradient">Управляй данными как PRO</span>
@@ -132,17 +128,16 @@
         Освойте Microsoft Excel на уровне топ-аналитиков: автоматизируйте рутину, стройте наглядные дашборды и закрывайте задачи за 5 минут вместо целого рабочего дня.
       </p>
 
-      <!-- Кнопки действий -->
       <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
         <a href="#tariffs" class="w-full sm:w-auto px-8 py-4 rounded-xl font-bold bg-gradient-to-r from-k2-lime to-k2-limeLight text-black shadow-xl shadow-k2-lime/25 hover:scale-105 transition-all text-sm uppercase tracking-wider">
           Выбрать формат обучения
         </a>
-        <a href="#program" class="w-full sm:w-auto px-8 py-4 rounded-xl font-semibold border border-white/20 bg-white/5 hover:bg-white/10 hover:border-k2-lime/50 transition-all flex items-center justify-center gap-2 text-sm">
-          <i data-lucide="file-spreadsheet" class="w-4 h-4 text-k2-lime"></i> Смотреть программу
+        <a href="#comparison" class="w-full sm:w-auto px-8 py-4 rounded-xl font-semibold border border-white/20 bg-white/5 hover:bg-white/10 hover:border-k2-lime/50 transition-all flex items-center justify-center gap-2 text-sm">
+          <i data-lucide="file-spreadsheet" class="w-4 h-4 text-k2-lime"></i> Смотреть разбор До/После
         </a>
       </div>
 
-      <!-- Живые метрики доверия -->
+      <!-- Живые метрики -->
       <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mt-16 pt-10 border-t border-white/10 text-left">
         <div class="p-4 rounded-2xl bg-k2-surface/70 border border-white/5">
           <div class="text-3xl font-extrabold text-k2-lime font-mono">x4</div>
@@ -164,7 +159,7 @@
     </div>
   </section>
 
-  <!-- 2. ИНТЕРАКТИВНОЕ СРАВНЕНИЕ: ДО VS ПОСЛЕ (С ЭФФЕКТОМ ВАУ) -->
+  <!-- 2. ИНТЕРАКТИВНОЕ СРАВНЕНИЕ: ДО VS ПОСЛЕ -->
   <section id="comparison" class="py-20 px-4 bg-k2-surface/50 border-y border-white/5">
     <div class="max-w-6xl mx-auto">
       <div class="text-center max-w-3xl mx-auto mb-16">
@@ -174,7 +169,7 @@
       </div>
 
       <div class="grid md:grid-cols-2 gap-8">
-        <!-- БЛОК ДО: ХАОС И РУТИНА -->
+        <!-- БЛОК ДО -->
         <div class="p-8 rounded-3xl bg-red-950/10 border border-red-500/20 relative overflow-hidden">
           <div class="flex items-center justify-between mb-6">
             <span class="px-3 py-1 rounded-full text-xs font-mono font-bold bg-red-500/20 text-red-400 border border-red-500/30">ДО K2 SKILLS</span>
@@ -188,7 +183,7 @@
             </li>
             <li class="flex items-start gap-3">
               <i data-lucide="x" class="w-5 h-5 text-red-400 shrink-0 mt-0.5"></i>
-              <span>Ошибки `#Н/Д`, `#ЗНАЧ!`, которые ломают отчет перед начальником.</span>
+              <span>Ошибки `#Н/Д`, `#ЗНАЧ!`, которые ломают отчет перед руководством.</span>
             </li>
             <li class="flex items-start gap-3">
               <i data-lucide="x" class="w-5 h-5 text-red-400 shrink-0 mt-0.5"></i>
@@ -201,7 +196,7 @@
           </ul>
         </div>
 
-        <!-- БЛОК ПОСЛЕ: МАГИЯ И СКОРОСТЬ -->
+        <!-- БЛОК ПОСЛЕ -->
         <div class="p-8 rounded-3xl bg-k2-card/80 border border-k2-lime/40 neon-border relative overflow-hidden">
           <div class="flex items-center justify-between mb-6">
             <span class="px-3 py-1 rounded-full text-xs font-mono font-bold bg-k2-lime/20 text-k2-lime border border-k2-lime/40">ПОСЛЕ КУРСА</span>
@@ -215,7 +210,7 @@
             </li>
             <li class="flex items-start gap-3">
               <i data-lucide="check" class="w-5 h-5 text-k2-lime shrink-0 mt-0.5"></i>
-              <span>Интерактивные дашборды с динамическими срезами и графиками в стиле Apple.</span>
+              <span>Интерактивные дашборды с динамическими срезами и графиками.</span>
             </li>
             <li class="flex items-start gap-3">
               <i data-lucide="check" class="w-5 h-5 text-k2-lime shrink-0 mt-0.5"></i>
@@ -231,7 +226,7 @@
     </div>
   </section>
 
-  <!-- 3. ИНТЕРАКТИВНЫЙ ГРАФИК РОСТА ЗАРПЛАТЫ (CHART.JS) -->
+  <!-- 3. ИНТЕРАКТИВНЫЙ ГРАФИК РОСТА ЗАРПЛАТЫ -->
   <section id="career" class="py-20 px-4">
     <div class="max-w-5xl mx-auto bg-k2-card/90 rounded-3xl p-6 sm:p-10 border border-white/10">
       <div class="flex flex-col md:flex-row md:items-end justify-between mb-8 gap-4">
@@ -241,7 +236,6 @@
           <p class="text-slate-400 text-xs sm:text-sm mt-1">По данным рекрутинговых агентств HeadHunter и LinkedIn</p>
         </div>
 
-        <!-- Кнопки выбора профессий для графика -->
         <div class="flex flex-wrap gap-2 text-xs font-mono">
           <button onclick="updateChart('analyst')" class="prof-btn px-3 py-1.5 rounded-lg bg-k2-lime text-black font-bold">Аналитик</button>
           <button onclick="updateChart('finance')" class="prof-btn px-3 py-1.5 rounded-lg bg-white/5 hover:bg-white/10 text-slate-300">Финансист</button>
@@ -250,7 +244,6 @@
         </div>
       </div>
 
-      <!-- Холст для Chart.js -->
       <div class="relative w-full h-72 sm:h-80">
         <canvas id="salaryChart"></canvas>
       </div>
@@ -272,7 +265,7 @@
     </div>
   </section>
 
-  <!-- 4. КАЛЬКУЛЯТОР ВРЕМЕНИ И ДЕНЕГ (TIME-SAVER ROI) -->
+  <!-- 4. КАЛЬКУЛЯТОР ВРЕМЕНИ И ДЕНЕГ -->
   <section id="calculator" class="py-20 px-4 bg-k2-surface/60 border-t border-white/5">
     <div class="max-w-4xl mx-auto text-center">
       <span class="text-k2-lime text-xs font-mono uppercase tracking-widest font-semibold">Калькулятор окупаемости</span>
@@ -315,7 +308,7 @@
     </div>
   </section>
 
-  <!-- 5. ТАРИФЫ ДЛЯ ВСЕХ АУДИТОРИЙ -->
+  <!-- 5. ТАРИФЫ -->
   <section id="tariffs" class="py-20 px-4">
     <div class="max-w-6xl mx-auto">
       <div class="text-center max-w-3xl mx-auto mb-16">
@@ -325,7 +318,7 @@
       </div>
 
       <div class="grid md:grid-cols-3 gap-8">
-        <!-- ТАРИФ 1: БАЗА -->
+        <!-- ТАРИФ 1 -->
         <div class="p-8 rounded-3xl bg-k2-card border border-white/10 flex flex-col justify-between hover:border-white/20 transition">
           <div>
             <span class="text-xs font-mono text-slate-400 uppercase tracking-widest">Новичкам и студентам</span>
@@ -346,7 +339,7 @@
           </button>
         </div>
 
-        <!-- ТАРИФ 2: ФЛАГМАН PRO (СВЕТЯЩАЯСЯ КАРТОЧКА) -->
+        <!-- ТАРИФ 2: ХИТ -->
         <div class="p-8 rounded-3xl bg-k2-card border border-k2-lime/60 neon-border flex flex-col justify-between relative transform md:-translate-y-4">
           <div class="absolute -top-3.5 left-1/2 -translate-x-1/2 px-4 py-1 rounded-full bg-k2-lime text-black font-bold text-[10px] uppercase tracking-widest font-mono">
             ХИТ ПРОДАЖ • ВЫБОР 85%
@@ -373,7 +366,7 @@
           </button>
         </div>
 
-        <!-- ТАРИФ 3: КОРПОРАТИВНЫЙ -->
+        <!-- ТАРИФ 3 -->
         <div class="p-8 rounded-3xl bg-k2-card border border-white/10 flex flex-col justify-between hover:border-white/20 transition">
           <div>
             <span class="text-xs font-mono text-slate-400 uppercase tracking-widest">Для бизнеса и команд</span>
@@ -397,26 +390,70 @@
     </div>
   </section>
 
-  <!-- ПОДВАЛ K2 SKILLS -->
-  <footer class="border-t border-white/10 bg-black py-12 px-4 text-xs text-slate-500">
+  <!-- ПОДВАЛ С ЭТАЛОННЫМ БРЕНДИНГОМ: IT LIFE & PAVLIKNEMOROZOFF -->
+  <footer class="border-t border-white/10 bg-black pt-12 pb-14 px-4 text-xs text-slate-500">
     <div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-6 text-center md:text-left">
+      
+      <!-- Инфо о курсе -->
       <div class="flex items-center gap-3">
-        <img src="Logo.png" alt="K2" class="w-8 h-8 object-contain">
-        <span class="font-title font-bold text-white text-base">K2 SKILLS</span>
-        <span class="text-slate-600">|</span>
-        <span>От новичка до гуру аналитики в Microsoft Excel</span>
+        <img src="Logo.png" alt="K2" class="w-8 h-8 object-contain" onerror="this.style.display='none'">
+        <div>
+          <span class="font-title font-bold text-white text-base">K2 SKILLS</span>
+          <p class="text-slate-400 text-[11px]">От новичка до гуру аналитики в Microsoft Excel</p>
+        </div>
       </div>
+
+      <!-- Юридический копирайт -->
       <div>
-        © 2026 K2 SKILLS. Все права защищены. Разработано специально для победителей.
+        © 2026 K2 SKILLS. Все права защищены.
       </div>
+
+      <!-- ЭТАЛОННЫЙ БРЕНДИНГ РАЗРАБОТЧИКА -->
+      <div class="flex items-center gap-3.5 px-4 py-2.5 rounded-2xl bg-white/[0.03] border border-white/10 hover:border-k2-lime/40 transition group">
+        <!-- Пульсирующий индикатор живой экосистемы -->
+        <div class="w-2 h-2 rounded-full bg-k2-lime animate-pulse"></div>
+        <div class="text-left leading-snug">
+          <div class="text-slate-400 text-[11px] font-medium tracking-wide">
+            Разработано <span class="text-white font-bold tracking-wider">IT Life</span>
+          </div>
+          <div class="text-[10px] font-mono tracking-widest text-slate-500 uppercase">
+            a <span class="text-k2-limeLight font-semibold">PAVLIKneMOROZOFF</span> company
+          </div>
+        </div>
+      </div>
+
     </div>
   </footer>
 
-  <!-- СКРИПТЫ: ДИНАМИЧЕСКИЙ ГРАФИК + КАЛЬКУЛЯТОР -->
+  <!-- ПРИПОДНЯТАЯ КНОПКА «ПОДНЯТЬСЯ ВВЕРХ» -->
+  <button id="back-to-top" aria-label="Подняться вверх" class="fixed bottom-20 right-6 z-50 p-3 sm:p-3.5 rounded-full bg-k2-card/90 text-k2-lime border border-k2-lime/40 shadow-2xl shadow-black hover:bg-k2-lime hover:text-black transition-all duration-300 transform opacity-0 translate-y-10 pointer-events-none group hover:scale-110">
+    <i data-lucide="chevron-up" class="w-5 h-5 sm:w-6 sm:h-6 stroke-[2.5]"></i>
+  </button>
+
+  <!-- СКРИПТЫ: ГРАФИК, КАЛЬКУЛЯТОР, КНОПКА НАВЕРХ -->
   <script>
     lucide.createIcons();
 
-    // 1. ИНТЕРАКТИВНЫЙ ГРАФИК РОСТА ЗАРПЛАТЫ (CHART.JS)
+    // 1. Кнопка «Наверх»
+    const backToTopBtn = document.getElementById('back-to-top');
+    window.addEventListener('scroll', () => {
+      if (window.scrollY > 300) {
+        backToTopBtn.classList.remove('opacity-0', 'translate-y-10', 'pointer-events-none');
+        backToTopBtn.classList.add('opacity-100', 'translate-y-0', 'pointer-events-auto');
+      } else {
+        backToTopBtn.classList.add('opacity-0', 'translate-y-10', 'pointer-events-none');
+        backToTopBtn.classList.remove('opacity-100', 'translate-y-0', 'pointer-events-auto');
+      }
+    });
+
+    backToTopBtn.addEventListener('click', () => {
+      window.scrollTo({
+        top: 0,
+        behavior: 'smooth'
+      });
+    });
+
+    // 2. Интерактивный график роста зарплаты (Chart.js)
     const ctx = document.getElementById('salaryChart').getContext('2d');
     
     const salaryData = {
@@ -478,7 +515,7 @@
       chart.update();
     }
 
-    // 2. КАЛЬКУЛЯТОР СБЕРЕЖЕННОГО ВРЕМЕНИ И ДЕНЕГ
+    // 3. Калькулятор времени и денег
     const hSlider = document.getElementById('hours-slider');
     const sSlider = document.getElementById('salary-slider');
     const hVal = document.getElementById('hours-val');
@@ -493,7 +530,6 @@
       hVal.textContent = hours + ' часов';
       sVal.textContent = salary.toLocaleString('ru-RU') + ' ₸';
 
-      // 70% рутинного времени Excel экономит
       const savedHoursYear = Math.round(hours * 0.7 * 4 * 12);
       const hourlyRate = salary / 160;
       const savedMoneyYear = Math.round(savedHoursYear * hourlyRate);
