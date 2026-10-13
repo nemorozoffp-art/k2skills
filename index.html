@@ -1,0 +1,510 @@
+<!DOCTYPE html>
+<html lang="ru" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>K2 SKILLS | От новичка до гуру аналитики в Microsoft Excel</title>
+  
+  <!-- Tailwind CSS & Lucide Icons -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <!-- Chart.js для живых интерактивных графиков -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: {
+            k2: {
+              dark: '#08090C',
+              surface: '#0F1117',
+              card: '#141822',
+              lime: '#84CC16',
+              limeLight: '#A3E635',
+              limeGlow: '#65A30D'
+            }
+          },
+          fontFamily: {
+            title: ['Space Grotesk', 'sans-serif'],
+            sans: ['Inter', 'sans-serif'],
+            mono: ['JetBrains Mono', 'monospace'],
+          }
+        }
+      }
+    }
+  </script>
+
+  <style>
+    /* Неоновые градиенты и свечение K2 */
+    .k2-lime-gradient {
+      background: linear-gradient(135deg, #FFFFFF 0%, #A3E635 50%, #65A30D 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    .neon-border {
+      border: 1px solid rgba(163, 230, 53, 0.25);
+      box-shadow: 0 0 25px rgba(132, 204, 22, 0.12);
+    }
+    .neon-border:hover {
+      border: 1px solid rgba(163, 230, 53, 0.6);
+      box-shadow: 0 0 35px rgba(132, 204, 22, 0.25);
+    }
+    .grid-bg {
+      background-size: 32px 32px;
+      background-image: 
+        linear-gradient(to right, rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+        linear-gradient(to bottom, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+    }
+  </style>
+</head>
+<body class="bg-k2-dark text-slate-100 font-sans antialiased selection:bg-k2-lime selection:text-black grid-bg relative">
+
+  <!-- ВЕРХНИЙ БАР ДЕДЛАЙНА / ЖИВОЙ СТАТУС -->
+  <div class="bg-k2-card/80 border-b border-white/5 py-2 px-4 backdrop-blur-md text-xs">
+    <div class="max-w-7xl mx-auto flex flex-wrap justify-between items-center gap-3">
+      <div class="flex items-center gap-2">
+        <span class="w-2 h-2 rounded-full bg-k2-lime animate-ping"></span>
+        <span class="text-slate-300 font-medium">Старт нового практического потока: <span class="text-k2-lime font-bold">через 4 дня</span></span>
+      </div>
+      <div class="flex items-center gap-4 text-slate-400">
+        <span class="hidden sm:inline">Осталось мест по спеццене: <strong class="text-white">6 из 25</strong></span>
+        <a href="#tariffs" class="text-k2-limeLight hover:underline font-semibold flex items-center gap-1">
+          Занять место <i data-lucide="arrow-up-right" class="w-3.5 h-3.5"></i>
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <!-- ШАПКА -->
+  <header class="sticky top-0 z-50 bg-k2-dark/90 backdrop-blur-xl border-b border-white/10">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 py-3.5 flex items-center justify-between">
+      <!-- Логотип K2 SKILLS -->
+      <a href="#" class="flex items-center gap-3 group">
+        <img src="Logo.png" alt="K2 SKILLS" class="w-10 h-10 object-contain rounded-xl drop-shadow-[0_0_10px_rgba(132,204,22,0.4)] group-hover:scale-105 transition-transform">
+        <div>
+          <span class="block font-title text-xl font-extrabold tracking-wider text-white">K2 <span class="text-k2-lime">SKILLS</span></span>
+          <span class="block text-[9px] uppercase tracking-widest text-slate-400 font-medium font-mono">EXCEL GURU ACADEMY</span>
+        </div>
+      </a>
+
+      <!-- Меню -->
+      <nav class="hidden md:flex items-center gap-8 text-sm font-medium text-slate-300">
+        <a href="#comparison" class="hover:text-k2-lime transition">До и После</a>
+        <a href="#career" class="hover:text-k2-lime transition">Рост дохода</a>
+        <a href="#program" class="hover:text-k2-lime transition">Программа</a>
+        <a href="#calculator" class="hover:text-k2-lime transition">Калькулятор</a>
+        <a href="#tariffs" class="hover:text-k2-lime transition">Тарифы</a>
+      </nav>
+
+      <!-- CTA кнопка -->
+      <div class="flex items-center gap-3">
+        <a href="#tariffs" class="px-5 py-2.5 rounded-xl font-bold text-xs uppercase tracking-wider bg-gradient-to-r from-k2-lime via-k2-limeLight to-k2-lime text-black hover:opacity-95 shadow-lg shadow-k2-lime/20 hover:scale-105 transition-all">
+          Получить пробный урок
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <!-- 1. HERO SECTION (ГЛАВНЫЙ ЭКРАН С ЖИВЫМИ ЦИФРАМИ) -->
+  <section class="relative min-h-[85vh] flex items-center justify-center px-4 py-20 overflow-hidden">
+    <!-- Световые круги в стиле Cyber/Lime -->
+    <div class="absolute top-1/4 left-1/2 -translate-x-1/2 w-[600px] h-[350px] bg-k2-lime/15 rounded-full blur-[130px] pointer-events-none"></div>
+
+    <div class="relative z-10 max-w-5xl mx-auto text-center">
+      <!-- Бейдж -->
+      <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-k2-lime/30 bg-k2-lime/10 text-k2-lime text-xs font-semibold mb-8">
+        <i data-lucide="zap" class="w-4 h-4 fill-current"></i>
+        <span>Курс-акселератор: от первых формул до интерактивных BI-дашбордов</span>
+      </div>
+
+      <!-- Главный оффер -->
+      <h1 class="text-4xl sm:text-6xl md:text-7xl font-extrabold tracking-tight leading-[1.1] mb-6 font-title">
+        <span class="block text-white">Перестань бояться таблиц.</span>
+        <span class="k2-lime-gradient">Управляй данными как PRO</span>
+      </h1>
+
+      <p class="max-w-2xl mx-auto text-base sm:text-xl text-slate-300 font-light mb-10 leading-relaxed">
+        Освойте Microsoft Excel на уровне топ-аналитиков: автоматизируйте рутину, стройте наглядные дашборды и закрывайте задачи за 5 минут вместо целого рабочего дня.
+      </p>
+
+      <!-- Кнопки действий -->
+      <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
+        <a href="#tariffs" class="w-full sm:w-auto px-8 py-4 rounded-xl font-bold bg-gradient-to-r from-k2-lime to-k2-limeLight text-black shadow-xl shadow-k2-lime/25 hover:scale-105 transition-all text-sm uppercase tracking-wider">
+          Выбрать формат обучения
+        </a>
+        <a href="#program" class="w-full sm:w-auto px-8 py-4 rounded-xl font-semibold border border-white/20 bg-white/5 hover:bg-white/10 hover:border-k2-lime/50 transition-all flex items-center justify-center gap-2 text-sm">
+          <i data-lucide="file-spreadsheet" class="w-4 h-4 text-k2-lime"></i> Смотреть программу
+        </a>
+      </div>
+
+      <!-- Живые метрики доверия -->
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mt-16 pt-10 border-t border-white/10 text-left">
+        <div class="p-4 rounded-2xl bg-k2-surface/70 border border-white/5">
+          <div class="text-3xl font-extrabold text-k2-lime font-mono">x4</div>
+          <div class="text-xs text-slate-400 mt-1 font-medium">Ускорение работы с отчетами</div>
+        </div>
+        <div class="p-4 rounded-2xl bg-k2-surface/70 border border-white/5">
+          <div class="text-3xl font-extrabold text-white font-mono">150+</div>
+          <div class="text-xs text-slate-400 mt-1 font-medium">Формул, горячих клавиш и трюков</div>
+        </div>
+        <div class="p-4 rounded-2xl bg-k2-surface/70 border border-white/5">
+          <div class="text-3xl font-extrabold text-k2-lime font-mono">0 → PRO</div>
+          <div class="text-xs text-slate-400 mt-1 font-medium">Подходит абсолютно с нуля</div>
+        </div>
+        <div class="p-4 rounded-2xl bg-k2-surface/70 border border-white/5">
+          <div class="text-3xl font-extrabold text-white font-mono">100%</div>
+          <div class="text-xs text-slate-400 mt-1 font-medium">Практика на реальных кейсах компаний</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 2. ИНТЕРАКТИВНОЕ СРАВНЕНИЕ: ДО VS ПОСЛЕ (С ЭФФЕКТОМ ВАУ) -->
+  <section id="comparison" class="py-20 px-4 bg-k2-surface/50 border-y border-white/5">
+    <div class="max-w-6xl mx-auto">
+      <div class="text-center max-w-3xl mx-auto mb-16">
+        <span class="text-k2-lime text-xs font-mono uppercase tracking-widest font-semibold">Трансформация навыка</span>
+        <h2 class="text-3xl sm:text-5xl font-extrabold text-white font-title mt-2">Как изменится ваша работа</h2>
+        <p class="text-slate-400 text-sm sm:text-base mt-3">Почувствуйте разницу между ручным поиском ошибок и профессиональной автоматизацией.</p>
+      </div>
+
+      <div class="grid md:grid-cols-2 gap-8">
+        <!-- БЛОК ДО: ХАОС И РУТИНА -->
+        <div class="p-8 rounded-3xl bg-red-950/10 border border-red-500/20 relative overflow-hidden">
+          <div class="flex items-center justify-between mb-6">
+            <span class="px-3 py-1 rounded-full text-xs font-mono font-bold bg-red-500/20 text-red-400 border border-red-500/30">ДО K2 SKILLS</span>
+            <i data-lucide="frown" class="w-6 h-6 text-red-400"></i>
+          </div>
+          <h3 class="text-2xl font-bold text-white mb-4">Ручной труд и страх сделать ошибку</h3>
+          <ul class="space-y-4 text-sm text-slate-300">
+            <li class="flex items-start gap-3">
+              <i data-lucide="x" class="w-5 h-5 text-red-400 shrink-0 mt-0.5"></i>
+              <span>Сверка таблиц глазами по 3–5 часов в конце каждого месяца.</span>
+            </li>
+            <li class="flex items-start gap-3">
+              <i data-lucide="x" class="w-5 h-5 text-red-400 shrink-0 mt-0.5"></i>
+              <span>Ошибки `#Н/Д`, `#ЗНАЧ!`, которые ломают отчет перед начальником.</span>
+            </li>
+            <li class="flex items-start gap-3">
+              <i data-lucide="x" class="w-5 h-5 text-red-400 shrink-0 mt-0.5"></i>
+              <span>Серые, скучные таблицы без структуры, в которых никто не ориентируется.</span>
+            </li>
+            <li class="flex items-start gap-3">
+              <i data-lucide="x" class="w-5 h-5 text-red-400 shrink-0 mt-0.5"></i>
+              <span>Потолок в карьере: рутина съедает все время для реального развития.</span>
+            </li>
+          </ul>
+        </div>
+
+        <!-- БЛОК ПОСЛЕ: МАГИЯ И СКОРОСТЬ -->
+        <div class="p-8 rounded-3xl bg-k2-card/80 border border-k2-lime/40 neon-border relative overflow-hidden">
+          <div class="flex items-center justify-between mb-6">
+            <span class="px-3 py-1 rounded-full text-xs font-mono font-bold bg-k2-lime/20 text-k2-lime border border-k2-lime/40">ПОСЛЕ КУРСА</span>
+            <i data-lucide="sparkles" class="w-6 h-6 text-k2-lime"></i>
+          </div>
+          <h3 class="text-2xl font-bold text-white mb-4">Автоматизация за пару кликов</h3>
+          <ul class="space-y-4 text-sm text-slate-300">
+            <li class="flex items-start gap-3">
+              <i data-lucide="check" class="w-5 h-5 text-k2-lime shrink-0 mt-0.5"></i>
+              <span>Сводные таблицы, `XLOOKUP`, `INDEX/MATCH` за секунды связывают миллионы строк.</span>
+            </li>
+            <li class="flex items-start gap-3">
+              <i data-lucide="check" class="w-5 h-5 text-k2-lime shrink-0 mt-0.5"></i>
+              <span>Интерактивные дашборды с динамическими срезами и графиками в стиле Apple.</span>
+            </li>
+            <li class="flex items-start gap-3">
+              <i data-lucide="check" class="w-5 h-5 text-k2-lime shrink-0 mt-0.5"></i>
+              <span>Power Query: один раз настроили выгрузку — отчет обновляется кнопкой `F9`.</span>
+            </li>
+            <li class="flex items-start gap-3">
+              <i data-lucide="check" class="w-5 h-5 text-k2-lime shrink-0 mt-0.5"></i>
+              <span>Статус ценного ключевого сотрудника, к которому все идут за решением.</span>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 3. ИНТЕРАКТИВНЫЙ ГРАФИК РОСТА ЗАРПЛАТЫ (CHART.JS) -->
+  <section id="career" class="py-20 px-4">
+    <div class="max-w-5xl mx-auto bg-k2-card/90 rounded-3xl p-6 sm:p-10 border border-white/10">
+      <div class="flex flex-col md:flex-row md:items-end justify-between mb-8 gap-4">
+        <div>
+          <span class="text-k2-lime text-xs font-mono uppercase tracking-widest font-semibold">Анализ рынка труда</span>
+          <h2 class="text-2xl sm:text-4xl font-extrabold text-white font-title mt-1">Как знание Excel повышает доход</h2>
+          <p class="text-slate-400 text-xs sm:text-sm mt-1">По данным рекрутинговых агентств HeadHunter и LinkedIn</p>
+        </div>
+
+        <!-- Кнопки выбора профессий для графика -->
+        <div class="flex flex-wrap gap-2 text-xs font-mono">
+          <button onclick="updateChart('analyst')" class="prof-btn px-3 py-1.5 rounded-lg bg-k2-lime text-black font-bold">Аналитик</button>
+          <button onclick="updateChart('finance')" class="prof-btn px-3 py-1.5 rounded-lg bg-white/5 hover:bg-white/10 text-slate-300">Финансист</button>
+          <button onclick="updateChart('marketing')" class="prof-btn px-3 py-1.5 rounded-lg bg-white/5 hover:bg-white/10 text-slate-300">Маркетолог</button>
+          <button onclick="updateChart('manager')" class="prof-btn px-3 py-1.5 rounded-lg bg-white/5 hover:bg-white/10 text-slate-300">Менеджер</button>
+        </div>
+      </div>
+
+      <!-- Холст для Chart.js -->
+      <div class="relative w-full h-72 sm:h-80">
+        <canvas id="salaryChart"></canvas>
+      </div>
+
+      <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 mt-8 pt-6 border-t border-white/5 text-center sm:text-left text-xs">
+        <div>
+          <span class="text-slate-400 block">Базовый ввод данных:</span>
+          <strong class="text-base text-slate-300 font-mono">от 200 000 ₸</strong>
+        </div>
+        <div>
+          <span class="text-slate-400 block">Продвинутые формулы & сводные:</span>
+          <strong class="text-base text-white font-mono">от 450 000 ₸</strong>
+        </div>
+        <div>
+          <span class="text-k2-lime block">BI Дашборды, Power Query & Макросы:</span>
+          <strong class="text-base text-k2-lime font-mono">от 800 000 ₸+</strong>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 4. КАЛЬКУЛЯТОР ВРЕМЕНИ И ДЕНЕГ (TIME-SAVER ROI) -->
+  <section id="calculator" class="py-20 px-4 bg-k2-surface/60 border-t border-white/5">
+    <div class="max-w-4xl mx-auto text-center">
+      <span class="text-k2-lime text-xs font-mono uppercase tracking-widest font-semibold">Калькулятор окупаемости</span>
+      <h2 class="text-3xl sm:text-4xl font-extrabold text-white font-title mt-2">Сколько жизни вы отдаете таблицам?</h2>
+      <p class="text-slate-400 text-sm mt-2 max-w-xl mx-auto">Подвигайте ползунки и посмотрите, сколько времени вы сэкономите за 1 год.</p>
+
+      <div class="mt-12 bg-k2-card p-8 rounded-3xl border border-white/10 text-left">
+        <div class="space-y-6">
+          <div>
+            <div class="flex justify-between text-sm mb-2">
+              <span class="text-slate-300">Сколько часов в неделю уходит на отчеты и таблицы?</span>
+              <span id="hours-val" class="font-bold text-k2-lime font-mono text-base">10 часов</span>
+            </div>
+            <input id="hours-slider" type="range" min="2" max="30" value="10" class="w-full accent-k2-lime cursor-pointer">
+          </div>
+
+          <div>
+            <div class="flex justify-between text-sm mb-2">
+              <span class="text-slate-300">Ваша текущая зарплата в месяц (тенге):</span>
+              <span id="salary-val" class="font-bold text-white font-mono text-base">400 000 ₸</span>
+            </div>
+            <input id="salary-slider" type="range" min="150000" max="1500000" step="50000" value="400000" class="w-full accent-k2-lime cursor-pointer">
+          </div>
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mt-8 pt-8 border-t border-white/10">
+          <div class="p-4 rounded-2xl bg-white/[0.02] border border-white/5">
+            <span class="text-xs text-slate-400 block">Вы сэкономите за год:</span>
+            <span id="res-hours" class="text-3xl font-extrabold text-k2-lime font-mono block mt-1">360 часов</span>
+            <span class="text-[11px] text-slate-500 mt-1 block">Это 45 полных рабочих дней отдыха!</span>
+          </div>
+
+          <div class="p-4 rounded-2xl bg-white/[0.02] border border-white/5">
+            <span class="text-xs text-slate-400 block">Эквивалент сбереженных денег:</span>
+            <span id="res-money" class="text-3xl font-extrabold text-white font-mono block mt-1">900 000 ₸</span>
+            <span class="text-[11px] text-slate-500 mt-1 block">Курс окупается в первый же месяц работы.</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 5. ТАРИФЫ ДЛЯ ВСЕХ АУДИТОРИЙ -->
+  <section id="tariffs" class="py-20 px-4">
+    <div class="max-w-6xl mx-auto">
+      <div class="text-center max-w-3xl mx-auto mb-16">
+        <span class="text-k2-lime text-xs font-mono uppercase tracking-widest font-semibold">Инвестиция в себя</span>
+        <h2 class="text-3xl sm:text-5xl font-extrabold text-white font-title mt-2">Выберите уровень прокачки</h2>
+        <p class="text-slate-400 text-sm mt-3">Доступ ко всем шаблонам, практическим файлам и закрытому клубу студентов навсегда.</p>
+      </div>
+
+      <div class="grid md:grid-cols-3 gap-8">
+        <!-- ТАРИФ 1: БАЗА -->
+        <div class="p-8 rounded-3xl bg-k2-card border border-white/10 flex flex-col justify-between hover:border-white/20 transition">
+          <div>
+            <span class="text-xs font-mono text-slate-400 uppercase tracking-widest">Новичкам и студентам</span>
+            <h3 class="text-2xl font-bold text-white mt-1 mb-4">Excel Старт</h3>
+            <p class="text-slate-400 text-xs mb-6">Базовый синтаксис, логика таблиц, первые вычисления и уверенность без паники.</p>
+            <div class="mb-6 font-mono">
+              <span class="text-3xl font-bold text-white">49 000 ₸</span>
+            </div>
+            <ul class="space-y-3 text-xs text-slate-300 mb-8">
+              <li class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4 text-k2-lime"></i> Быстрый старт с нуля</li>
+              <li class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4 text-k2-lime"></i> 30 базовых формул (СУММ, СЧЁТ, ЕСЛИ)</li>
+              <li class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4 text-k2-lime"></i> Форматирование и печать отчетов</li>
+              <li class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4 text-k2-lime"></i> Сертификат о прохождении</li>
+            </ul>
+          </div>
+          <button class="w-full py-3.5 rounded-xl font-bold bg-white/10 hover:bg-white/20 text-white transition text-xs uppercase tracking-wider">
+            Выбрать Старт
+          </button>
+        </div>
+
+        <!-- ТАРИФ 2: ФЛАГМАН PRO (СВЕТЯЩАЯСЯ КАРТОЧКА) -->
+        <div class="p-8 rounded-3xl bg-k2-card border border-k2-lime/60 neon-border flex flex-col justify-between relative transform md:-translate-y-4">
+          <div class="absolute -top-3.5 left-1/2 -translate-x-1/2 px-4 py-1 rounded-full bg-k2-lime text-black font-bold text-[10px] uppercase tracking-widest font-mono">
+            ХИТ ПРОДАЖ • ВЫБОР 85%
+          </div>
+          <div>
+            <span class="text-xs font-mono text-k2-lime uppercase tracking-widest">Специалистам и аналитикам</span>
+            <h3 class="text-2xl font-bold text-white mt-1 mb-4">Гуру Аналитики</h3>
+            <p class="text-slate-400 text-xs mb-6">Полное погружение в бизнес-аналитику, дашборды, сложные связки и автоматизацию.</p>
+            <div class="mb-6 font-mono">
+              <span class="text-4xl font-bold text-k2-lime">99 000 ₸</span>
+              <span class="text-xs text-slate-500 line-through ml-2">150 000 ₸</span>
+            </div>
+            <ul class="space-y-3 text-xs text-slate-300 mb-8">
+              <li class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4 text-k2-lime"></i> Всё из тарифа «Старт»</li>
+              <li class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4 text-k2-lime"></i> ВПР, XLOOKUP, ИНДЕКС/ПОИСКПОЗ</li>
+              <li class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4 text-k2-lime"></i> Сводные таблицы и срезы</li>
+              <li class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4 text-k2-lime"></i> Создание интерактивных Дашбордов</li>
+              <li class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4 text-k2-lime"></i> Введение в Power Query (автоматизация)</li>
+              <li class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4 text-k2-lime"></i> Личный чат с куратором-экспертом</li>
+            </ul>
+          </div>
+          <button class="w-full py-4 rounded-xl font-bold bg-gradient-to-r from-k2-lime to-k2-limeLight text-black transition text-xs uppercase tracking-wider shadow-lg shadow-k2-lime/25 hover:scale-105">
+            Занять место на PRO
+          </button>
+        </div>
+
+        <!-- ТАРИФ 3: КОРПОРАТИВНЫЙ -->
+        <div class="p-8 rounded-3xl bg-k2-card border border-white/10 flex flex-col justify-between hover:border-white/20 transition">
+          <div>
+            <span class="text-xs font-mono text-slate-400 uppercase tracking-widest">Для бизнеса и команд</span>
+            <h3 class="text-2xl font-bold text-white mt-1 mb-4">Для Компаний</h3>
+            <p class="text-slate-400 text-xs mb-6">Обучение отделов продаж, бухгалтерии и финотделов под реальные таблицы компании.</p>
+            <div class="mb-6 font-mono">
+              <span class="text-3xl font-bold text-white">Индивидуально</span>
+            </div>
+            <ul class="space-y-3 text-xs text-slate-300 mb-8">
+              <li class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4 text-k2-lime"></i> Аудит текущих таблиц компании</li>
+              <li class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4 text-k2-lime"></i> Обучение на ваших реальных базах</li>
+              <li class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4 text-k2-lime"></i> Закрывающие документы для юрлиц</li>
+              <li class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4 text-k2-lime"></i> Тестирование и отчет об успеваемости</li>
+            </ul>
+          </div>
+          <button class="w-full py-3.5 rounded-xl font-bold bg-white/10 hover:bg-white/20 text-white transition text-xs uppercase tracking-wider">
+            Запросить КП для юрлиц
+          </button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ПОДВАЛ K2 SKILLS -->
+  <footer class="border-t border-white/10 bg-black py-12 px-4 text-xs text-slate-500">
+    <div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-6 text-center md:text-left">
+      <div class="flex items-center gap-3">
+        <img src="Logo.png" alt="K2" class="w-8 h-8 object-contain">
+        <span class="font-title font-bold text-white text-base">K2 SKILLS</span>
+        <span class="text-slate-600">|</span>
+        <span>От новичка до гуру аналитики в Microsoft Excel</span>
+      </div>
+      <div>
+        © 2026 K2 SKILLS. Все права защищены. Разработано специально для победителей.
+      </div>
+    </div>
+  </footer>
+
+  <!-- СКРИПТЫ: ДИНАМИЧЕСКИЙ ГРАФИК + КАЛЬКУЛЯТОР -->
+  <script>
+    lucide.createIcons();
+
+    // 1. ИНТЕРАКТИВНЫЙ ГРАФИК РОСТА ЗАРПЛАТЫ (CHART.JS)
+    const ctx = document.getElementById('salaryChart').getContext('2d');
+    
+    const salaryData = {
+      analyst: [250, 450, 750, 1100],
+      finance: [300, 500, 850, 1300],
+      marketing: [200, 380, 600, 950],
+      manager: [220, 400, 650, 1000]
+    };
+
+    let chart = new Chart(ctx, {
+      type: 'line',
+      data: {
+        labels: ['Базовый Excel', 'Сводные таблицы', 'Дашборды & XLOOKUP', 'Power Query & Автоматизация'],
+        datasets: [{
+          label: 'Доход в тыс. ₸',
+          data: salaryData.analyst,
+          borderColor: '#A3E635',
+          backgroundColor: 'rgba(163, 230, 53, 0.1)',
+          fill: true,
+          tension: 0.4,
+          pointBackgroundColor: '#FFFFFF',
+          pointBorderColor: '#84CC16',
+          pointRadius: 6,
+          pointHoverRadius: 8,
+          borderWidth: 3
+        }]
+      },
+      options: {
+        responsive: true,
+        maintainAspectRatio: false,
+        plugins: {
+          legend: { display: false }
+        },
+        scales: {
+          x: {
+            grid: { color: 'rgba(255, 255, 255, 0.05)' },
+            ticks: { color: '#94a3b8', font: { size: 10 } }
+          },
+          y: {
+            grid: { color: 'rgba(255, 255, 255, 0.05)' },
+            ticks: { 
+              color: '#94a3b8',
+              callback: function(value) { return value + ' тыс. ₸'; }
+            }
+          }
+        }
+      }
+    });
+
+    function updateChart(prof) {
+      document.querySelectorAll('.prof-btn').forEach(btn => {
+        btn.classList.remove('bg-k2-lime', 'text-black', 'font-bold');
+        btn.classList.add('bg-white/5', 'text-slate-300');
+      });
+      event.target.classList.remove('bg-white/5', 'text-slate-300');
+      event.target.classList.add('bg-k2-lime', 'text-black', 'font-bold');
+
+      chart.data.datasets[0].data = salaryData[prof];
+      chart.update();
+    }
+
+    // 2. КАЛЬКУЛЯТОР СБЕРЕЖЕННОГО ВРЕМЕНИ И ДЕНЕГ
+    const hSlider = document.getElementById('hours-slider');
+    const sSlider = document.getElementById('salary-slider');
+    const hVal = document.getElementById('hours-val');
+    const sVal = document.getElementById('salary-val');
+    const resHours = document.getElementById('res-hours');
+    const resMoney = document.getElementById('res-money');
+
+    function calculateSavings() {
+      const hours = parseInt(hSlider.value);
+      const salary = parseInt(sSlider.value);
+
+      hVal.textContent = hours + ' часов';
+      sVal.textContent = salary.toLocaleString('ru-RU') + ' ₸';
+
+      // 70% рутинного времени Excel экономит
+      const savedHoursYear = Math.round(hours * 0.7 * 4 * 12);
+      const hourlyRate = salary / 160;
+      const savedMoneyYear = Math.round(savedHoursYear * hourlyRate);
+
+      resHours.textContent = savedHoursYear + ' часов';
+      resMoney.textContent = savedMoneyYear.toLocaleString('ru-RU') + ' ₸';
+    }
+
+    hSlider.addEventListener('input', calculateSavings);
+    sSlider.addEventListener('input', calculateSavings);
+    calculateSavings();
+  </script>
+</body>
+</html>
